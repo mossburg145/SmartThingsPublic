@@ -42,7 +42,7 @@
  */
 
 metadata {
-    definition (name: "GE Link Bulb", namespace: "smartthings", author: "SmartThings", ocfDeviceType: "oic.d.light", runLocally: true, minHubCoreVersion: '000.017.0012', executeCommandsLocally: false, mnmn: "SmartThings", vid: "generic-dimmer") {
+    definition (name: "GE Link Bulb HA", namespace: "HASSIO", author: "HASSIO", ocfDeviceType: "oic.d.light", runLocally: true, minHubCoreVersion: '000.017.0012', executeCommandsLocally: false, mnmn: "SmartThings", vid: "generic-dimmer") {
 
         capability "Actuator"
         capability "Configuration"
@@ -198,7 +198,7 @@ def refresh() {
     return refreshCmds + zigbee.onOffRefresh() + zigbee.levelRefresh() + zigbee.onOffConfig()
 }
 
-def setLevel(value) {
+def setLevel(value, rate=0) {
     def cmd
     def delayForRefresh = 500
     if (dimRate && (state?.rate != null)) {
